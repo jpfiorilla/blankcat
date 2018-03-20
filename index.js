@@ -1,5 +1,7 @@
 const Twit = require('twit');
-const rita = require('rita');
+const { generate } = require('./generate');
+
+console.log(generate());
 
 const T = new Twit({
   consumer_key: '...',
