@@ -6,7 +6,6 @@ require.extensions['.txt'] = function(module, filename) {
 const dictionary = require('./dictionary.txt').split('\n');
 
 const capitalize = word => word[0].toUpperCase() + word.substr(1);
-const randomIndex = (max, excepts) => Math.floor(Math.random() * (max + 1));
 Array.prototype.pick = function() {
   return this[Math.floor(Math.random() * this.length)];
 };
