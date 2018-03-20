@@ -4,6 +4,7 @@ const fs = require('fs');
 require.extensions['.txt'] = function(module, filename) {
   module.exports = fs.readFileSync(filename, 'utf8');
 };
+const keys = require('./keys');
 
 // const { generate } = require('./generate');
 // generate(); run when redoing nouns or verbs.txt
@@ -25,17 +26,20 @@ const madlib = (noun, verb) =>
 
 console.log(madlib(noun, verb));
 
-const T = new Twit({
-  consumer_key: '...',
-  consumer_secret: '...',
-  access_token: '...',
-  access_token_secret: '...',
-  timeout_ms: 60 * 1000 // optional HTTP request timeout to apply to all requests.
-});
+const T = new Twit(keys);
 
+console.log(keys);
 const post = status =>
   T.post('statuses/update', { status }, (err, data, response) => {
     console.log(data);
   });
 
 // post(madlib(noun, verb));
+
+setInterval(function() {
+  try {
+    ost(madlib(noun, verb));
+  } catch (e) {
+    console.log(e);
+  }
+}, 60000 * 60 * 9 * 1.1);
